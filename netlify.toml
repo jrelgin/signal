@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "https://signal.netlify.com/*"
+  to = "https://www.signallantern.studio/:splat"
+  force = true

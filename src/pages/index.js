@@ -15,7 +15,7 @@ const IndexPage = () => (
       <p className="nope">don’t scroll,<br/>there’s nothing<br/>down here</p>
     </main>
     <section className="oh-hi">
-      <p>😊</p>
+      <span role="img" aria-labelledby="smile emoji">😊</span>
     </section>
   </Layout>
 )

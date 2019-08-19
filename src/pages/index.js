@@ -1,20 +1,28 @@
 import React from 'react'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
+import styles from './index.module.scss'
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" keywords={[`signal lantern`, `design`, `development`]} />
-    <main className="home-content">
-      <h2 className="logo">signal lantern</h2>
-      <div className="meat">
-        <h1 className="lede">A design &amp; technology <br/> studio in Atlanta.</h1>
-        <p>We’re a small team that focuses on experimental web solutions. If you
-          have an interesting problem or brand, we might be the right team for you. </p>
+    <main className={styles.homeContent}>
+      <h2 className={styles.logo}>signal lantern</h2>
+      <div className={styles.meat}>
+        <h1 className={styles.lede}>
+          A design &amp; technology <br /> studio in Atlanta.
+        </h1>
+        <p>We’re a small team building fun for the web.</p>
       </div>
-      <p className="nope">don’t scroll,<br/>there’s nothing<br/>down here</p>
+      <p className={styles.nope}>
+        don’t scroll,
+        <br />
+        there’s nothing
+        <br />
+        down here
+      </p>
     </main>
-    <section className="oh-hi">
+    <section className={styles.ohHi}>
       <p>😊</p>
     </section>
   </Layout>

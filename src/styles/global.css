@@ -10,14 +10,20 @@ html {
 }
 
 body,
-.___gatsby {
+#___gatsby,
+#gatsby-focus-wrapper {
   min-height: 100%;
+}
+
+.dark {
+  background: $signal-black;
+  color: $linen;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Lora', serif;
+  font-family: 'Lora', 'Times New Roman', serif;
 }
 
 img,
@@ -26,6 +32,7 @@ svg {
 }
 
 h1 {
-  font-family: 'Dosis', sans-serif;
-  font-weight: 800;
+  font-family: 'Dosis', 'Lucida Sans Unicode', 'Avenir Next Condensed Ultra Light',
+    'Helvetica Neue Thin', sans-serif;
+  font-weight: 400;
 }

@@ -9,7 +9,7 @@ const BlogIndex = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
+      <SEO title="home" bgDark />
       <div>hello</div>
       <a href="/writing">Go to writing</a>
     </Layout>

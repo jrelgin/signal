@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import styles from './layout.module.css';
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`;
@@ -7,14 +8,14 @@ const Layout = ({ location, title, children }) => {
 
   if (location.pathname === rootPath) {
     header = (
-      <h1>
-        <Link to={`/`}>Signal Lantern</Link>
+      <h1 className={styles.headerHome}>
+        <Link to={`/`}>signal lantern</Link>
       </h1>
     );
   } else {
     header = (
-      <h1>
-        <Link to={`/`}>Signal Lantern</Link>
+      <h1 className={styles.header}>
+        <Link to={`/`}>signal lantern</Link>
       </h1>
     );
   }

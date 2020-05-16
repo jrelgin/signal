@@ -1,4 +1,7 @@
 @import '../styles/_common.css';
+.page-wrapper {
+  min-height: 100vh;
+}
 .header {
   a {
     text-decoration: none;

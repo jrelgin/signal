@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import styles from './layout.module.css';
+import styles from './Layout.module.css';
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`;
@@ -20,7 +20,7 @@ const Layout = ({ location, title, children }) => {
     );
   }
   return (
-    <div>
+    <div className={styles.pageWrapper}>
       <header>{header}</header>
       <main>{children}</main>
       <footer>

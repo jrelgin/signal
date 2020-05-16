@@ -1,5 +1,6 @@
-// custom typefaces
-import "typeface-montserrat"
-import "typeface-merriweather"
+import './src/styles/global.css';
 
-import "prismjs/themes/prism.css"
+//custom fonts
+import 'typeface-dosis';
+import 'typeface-lora';
+import 'prismjs/themes/prism.css';

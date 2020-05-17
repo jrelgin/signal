@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-
+import Box from '../components/Box';
 import Layout from '../components/Layout';
 import Seo from '../components/Seo';
 
@@ -10,8 +10,7 @@ const BlogIndex = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="home" bgDark />
-      <div>hello</div>
-      <a href="/writing">Go to writing</a>
+      <Box></Box>
     </Layout>
   );
 };

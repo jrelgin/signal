@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styles from './Layout.module.css';
+import Box from '../components/Box';
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`;
@@ -8,26 +9,40 @@ const Layout = ({ location, title, children }) => {
 
   if (location.pathname === rootPath) {
     header = (
-      <h1 className={styles.headerHome}>
-        <Link to={`/`}>signal lantern</Link>
-      </h1>
+      <div className={styles.headerHome}>
+        <h1>
+          <Link to={`/`}>signal lantern</Link>
+        </h1>
+      </div>
     );
   } else {
     header = (
-      <h1 className={styles.header}>
-        <Link to={`/`}>signal lantern</Link>
-      </h1>
+      <div className={styles.header}>
+        <h1>
+          <Link to={`/`}>signal lantern</Link>
+        </h1>
+      </div>
     );
   }
   return (
     <div className={styles.pageWrapper}>
-      <header>{header}</header>
+      <Box>
+        <header>{header}</header>
+      </Box>
       <main>{children}</main>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </footer>
+
+      <nav className={styles.siteNav}>
+        <Box>
+          <ul>
+            <li>
+              <Link to={'/about'}>About</Link>
+            </li>
+            <li>
+              <Link to="/writing">Writing</Link>
+            </li>
+          </ul>
+        </Box>
+      </nav>
     </div>
   );
 };

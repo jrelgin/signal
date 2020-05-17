@@ -3,10 +3,17 @@
   min-height: 100vh;
 }
 .header {
+  display: grid;
+  align-items: center;
+  height: 87px;
+  margin-bottom: 32px;
+
+  h1 {
+    margin: 0;
+  }
   a {
     text-decoration: none;
     color: $signal-black;
-    padding: 80px;
   }
 }
 
@@ -14,5 +21,41 @@
   composes: header;
   a {
     color: $linen;
+  }
+}
+
+.site-nav {
+  background: $signal-black;
+  display: grid;
+  position: fixed;
+  font-size: 1.25rem;
+  justify-content: end;
+  align-items: center;
+  height: 87px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style-type: none;
+      margin: 0 8px;
+    }
+  }
+
+  a {
+    color: $linen;
+    text-decoration: none;
+    padding: 0 0 8px;
+    border-bottom: 1px solid transparent;
+    transition: 300ms border-bottom ease-in-out;
+
+    &:hover {
+      border-bottom: 1px solid $orange;
+    }
   }
 }

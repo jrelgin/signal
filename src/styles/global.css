@@ -37,3 +37,7 @@ h1 {
   font-weight: 400;
   letter-spacing: 1px;
 }
+
+* {
+  box-sizing: border-box;
+}

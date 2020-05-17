@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styles from './Layout.module.css';
-import Box from '../components/Box';
+import Box from './Box';
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`;

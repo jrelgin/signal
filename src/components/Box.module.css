@@ -1,3 +1,9 @@
 .box {
+  display: grid;
   padding: 0 32px;
+}
+
+.skinny-box {
+  composes: box;
+  grid-template-columns: minmax(min-content, 600px);
 }

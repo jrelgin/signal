@@ -9,26 +9,24 @@ const Layout = ({ location, title, children }) => {
 
   if (location.pathname === rootPath) {
     header = (
-      <div className={styles.headerHome}>
+      <header className={styles.headerHome}>
         <h1>
           <Link to={`/`}>signal lantern</Link>
         </h1>
-      </div>
+      </header>
     );
   } else {
     header = (
-      <div className={styles.header}>
+      <header className={styles.header}>
         <h1>
           <Link to={`/`}>signal lantern</Link>
         </h1>
-      </div>
+      </header>
     );
   }
   return (
     <div className={styles.pageWrapper}>
-      <Box>
-        <header>{header}</header>
-      </Box>
+      <Box>{header}</Box>
       <main>{children}</main>
 
       <nav className={styles.siteNav}>

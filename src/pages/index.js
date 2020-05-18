@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import Box from '../components/Box';
 import Layout from '../components/Layout';
 import Seo from '../components/Seo';
 
-const BlogIndex = ({ data, location }) => {
+const Index = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title;
 
   return (
@@ -15,7 +15,7 @@ const BlogIndex = ({ data, location }) => {
   );
 };
 
-export default BlogIndex;
+export default Index;
 
 export const pageQuery = graphql`
   query {

@@ -19,7 +19,7 @@ const About = ({ data, location }) => {
           <h1>Hello</h1>
           <p>I'm Jason Elgin.</p>
           <div className={styles.social}>
-            <a href="https://github.com/jregin">
+            <a href="https://github.com/jrelgin">
               <Github />
             </a>
             <a href="https://twitter.com/jrelgin">

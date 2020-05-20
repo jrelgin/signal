@@ -4,6 +4,9 @@ import Box from '../components/Box';
 import Layout from '../components/Layout';
 import Seo from '../components/Seo';
 import styles from './about.module.css';
+import Github from '../images/github.svg';
+import LinkedIn from '../images/linkedin.svg';
+import Twitter from '../images/twitter.svg';
 
 const About = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title;
@@ -12,27 +15,20 @@ const About = ({ data, location }) => {
     <Layout location={location} title={siteTitle}>
       <Seo title="About" />
       <Box skinny>
-        {/*<div className={styles.contact}>*/}
-        {/*  {' '}*/}
-        {/*  <form name="contact" netlify>*/}
-        {/*    <p>*/}
-        {/*      <label>*/}
-        {/*        Name <input type="text" name="name" />*/}
-        {/*      </label>*/}
-        {/*    </p>*/}
-        {/*    <p>*/}
-        {/*      <label>*/}
-        {/*        Email <input type="email" name="email" />*/}
-        {/*      </label>*/}
-        {/*    </p>*/}
-        {/*    <p>*/}
-        {/*      <button type="submit">Send</button>*/}
-        {/*    </p>*/}
-        {/*  </form>*/}
-        {/*</div>*/}
         <div className={styles.about}>
           <h1>Hello</h1>
           <p>I'm Jason Elgin.</p>
+          <div className={styles.social}>
+            <a href="https://github.com/jregin">
+              <Github />
+            </a>
+            <a href="https://twitter.com/jrelgin">
+              <Twitter />
+            </a>
+            <a href="https://www.linkedin.com/in/jrelgin/">
+              <LinkedIn />
+            </a>
+          </div>
         </div>
       </Box>
     </Layout>

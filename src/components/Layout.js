@@ -33,11 +33,13 @@ const Layout = ({ location, title, children }) => {
         <Box>
           <ul>
             <li>
-              <Link to={'/about'}>About</Link>
+              <Link activeClassName={styles.active} to={'/about'}>
+                About
+              </Link>
             </li>
-            <li>
-              <Link to="/writing">Writing</Link>
-            </li>
+            {/*<li>*/}
+            {/*  <Link to="/writing">Writing</Link>*/}
+            {/*</li>*/}
           </ul>
         </Box>
       </nav>

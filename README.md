@@ -91,3 +91,5 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 
 ## Super helpful links
 [Working with React Helmet](https://css-tricks.com/its-all-in-the-head-managing-the-document-head-of-a-react-powered-site-with-react-helmet/)
+
+[Getting p5.js running](https://semortea.wordpress.com/2020/04/06/p5-js-with-gatsbyjs-tutorial/)

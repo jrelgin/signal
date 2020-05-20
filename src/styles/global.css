@@ -1,0 +1,39 @@
+@import '_fonts.css';
+@import '_normalize.css';
+@import '_variables.css';
+@import '_mixins.css';
+@import '_type.css';
+@import '_helpers.css';
+
+html {
+  height: 100%;
+}
+
+body,
+#___gatsby,
+#gatsby-focus-wrapper {
+  min-height: 100%;
+}
+
+.dark {
+  background: $signal-black;
+  color: $linen;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lora', 'Times New Roman', serif;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+h1 {
+}
+
+* {
+  box-sizing: border-box;
+}

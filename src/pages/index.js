@@ -1,31 +1,47 @@
-import React from 'react'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
-import styles from './index.module.scss'
+import React, { Component } from 'react';
+import { loadableP5 as P5Wrapper } from '../scripts/loadable';
+import Sketch from '../scripts/sketch';
+import { graphql } from 'gatsby';
+import Box from '../components/Box';
+import Layout from '../components/Layout';
+import Seo from '../components/Seo';
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" keywords={[`signal lantern`, `design`, `development`]} />
-    <main className={styles.homeContent}>
-      <h2 className={styles.logo}>signal lantern</h2>
-      <div className={styles.meat}>
-        <h1 className={styles.lede}>
-          A design &amp; technology <br /> studio in Atlanta.
-        </h1>
-        <p>We’re a small team building fun for the web.</p>
-      </div>
-      <p className={styles.nope}>
-        don’t scroll,
-        <br />
-        there’s nothing
-        <br />
-        down here
-      </p>
-    </main>
-    <section className={styles.ohHi}>
-      <p>😊</p>
-    </section>
-  </Layout>
-)
+const Index = ({ data, location }) => {
+  const siteTitle = data.site.siteMetadata.title;
 
-export default IndexPage
+  return (
+    <Layout location={location} title={siteTitle}>
+      <Seo title="home" bgDark />
+      <Box>
+        <P5Wrapper sketch={Sketch} />
+      </Box>
+    </Layout>
+  );
+};
+
+export default Index;
+
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            title
+            description
+          }
+        }
+      }
+    }
+  }
+`;

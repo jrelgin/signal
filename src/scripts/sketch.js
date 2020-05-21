@@ -1,6 +1,6 @@
 export default function Sketch(p5) {
   p5.setup = () => {
-    p5.createCanvas(p5.windowWidth - 80, p5.windowHeight - 207);
+    p5.createCanvas(p5.windowWidth - 64, p5.windowHeight - 207);
     p5.noStroke();
   };
 

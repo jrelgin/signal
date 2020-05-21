@@ -7,6 +7,7 @@ import styles from './about.module.css';
 import Github from '../images/github.svg';
 import LinkedIn from '../images/linkedin.svg';
 import Twitter from '../images/twitter.svg';
+import CodePen from '../images/codepen.svg';
 
 const About = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title;
@@ -16,9 +17,12 @@ const About = ({ data, location }) => {
       <Seo title="About" />
       <Box skinny>
         <div className={styles.about}>
-          <h1>Hello</h1>
-          <p>I'm Jason Elgin.</p>
+          <h1>Hello.</h1>
+          <p>I'm Jason Elgin:</p>
           <div className={styles.social}>
+            <a href="https://codepen.io/jrelgin">
+              <CodePen />
+            </a>
             <a href="https://github.com/jrelgin">
               <Github />
             </a>

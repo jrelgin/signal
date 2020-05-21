@@ -1,4 +1,4 @@
 # Redirects from what the browser requests to what we serve
-signal.netlify.app              signallantern.com
-www.signallantern.studio        signallantern.com
-signallantern.studio            signallantern.com
+signal.netlify.app              www.signallantern.com
+www.signallantern.studio        www.signallantern.com
+signallantern.studio            www.signallantern.com

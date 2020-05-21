@@ -32,6 +32,13 @@ const Layout = ({ location, title, children }) => {
       <nav className={styles.siteNav}>
         <Box>
           <ul>
+            {location.pathname !== rootPath && (
+              <li>
+                <Link activeClassName={styles.active} to={'/'}>
+                  Home
+                </Link>
+              </li>
+            )}
             <li>
               <Link activeClassName={styles.active} to={'/about'}>
                 About

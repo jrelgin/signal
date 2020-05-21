@@ -6,4 +6,5 @@
 .skinny-box {
   composes: box;
   grid-template-columns: minmax(min-content, 600px);
+  justify-content: center;
 }

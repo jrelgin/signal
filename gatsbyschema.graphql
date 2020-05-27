@@ -447,6 +447,7 @@ type MarkdownRemark implements Node {
   excerptAst(pruneLength: Int = 140, truncate: Boolean = false): JSON
   fields: MarkdownRemarkFields
   fileAbsolutePath: String
+  fileRelativePath: String
   frontmatter: MarkdownRemarkFrontmatter
   headings(depth: MarkdownHeadingLevels): [MarkdownHeading]
   html: String
@@ -454,6 +455,7 @@ type MarkdownRemark implements Node {
   id: ID!
   internal: Internal!
   parent: Node
+  rawFrontmatter: String
   rawMarkdownBody: String
   tableOfContents(absolute: Boolean = true, heading: String, maxDepth: Int, pathToSlugField: String = "fields.slug"): String
   timeToRead: Int
@@ -530,7 +532,7 @@ type Query {
   directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
   file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childImageSharp: ImageSharpFilterInput, childMarkdownRemark: MarkdownRemarkFilterInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
   imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput, resolutions: ImageSharpResolutionsFilterInput, sizes: ImageSharpSizesFilterInput): ImageSharp
-  markdownRemark(children: NodeFilterListInput, excerpt: StringQueryOperatorInput, excerptAst: JSONQueryOperatorInput, fields: MarkdownRemarkFieldsFilterInput, fileAbsolutePath: StringQueryOperatorInput, frontmatter: MarkdownRemarkFrontmatterFilterInput, headings: MarkdownHeadingFilterListInput, html: StringQueryOperatorInput, htmlAst: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, rawMarkdownBody: StringQueryOperatorInput, tableOfContents: StringQueryOperatorInput, timeToRead: IntQueryOperatorInput, wordCount: MarkdownWordCountFilterInput): MarkdownRemark
+  markdownRemark(children: NodeFilterListInput, excerpt: StringQueryOperatorInput, excerptAst: JSONQueryOperatorInput, fields: MarkdownRemarkFieldsFilterInput, fileAbsolutePath: StringQueryOperatorInput, fileRelativePath: StringQueryOperatorInput, frontmatter: MarkdownRemarkFrontmatterFilterInput, headings: MarkdownHeadingFilterListInput, html: StringQueryOperatorInput, htmlAst: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, rawFrontmatter: StringQueryOperatorInput, rawMarkdownBody: StringQueryOperatorInput, tableOfContents: StringQueryOperatorInput, timeToRead: IntQueryOperatorInput, wordCount: MarkdownWordCountFilterInput): MarkdownRemark
   site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
   siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
   sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, context: SitePageContextFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, matchPath: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
@@ -765,28 +767,20 @@ type SitePluginPackageJsonPeerDependencies {
 }
 
 type SitePluginPluginOptions {
-  backgroundColor: String
   background_color: String
-  disableBgImage: Boolean
-  disableBgImageOnAlpha: Boolean
   display: String
+  fs_org: String
   icon: String
-  ignoreFileExtensions: [String]
-  linkImagesToOriginal: Boolean
-  loading: String
-  markdownCaptions: Boolean
   maxWidth: Int
   name: String
   path: String
   pathCheck: Boolean
-  pathPrefix: String
   plugins: [SitePluginPluginOptionsPlugins]
   short_name: String
-  showCaptions: Boolean
+  sidebar: SitePluginPluginOptionsSidebar
   start_url: String
   theme_color: String
-  tracedSVG: Boolean
-  withWebp: Boolean
+  trackingId: String
   wrapperStyle: String
 }
 
@@ -794,6 +788,7 @@ type SitePluginPluginOptionsPlugins {
   browserAPIs: [String]
   id: String
   name: String
+  nodeAPIs: [String]
   pluginFilepath: String
   pluginOptions: SitePluginPluginOptionsPluginsPluginOptions
   resolve: String
@@ -801,19 +796,13 @@ type SitePluginPluginOptionsPlugins {
 }
 
 type SitePluginPluginOptionsPluginsPluginOptions {
-  backgroundColor: String
-  disableBgImage: Boolean
-  disableBgImageOnAlpha: Boolean
-  ignoreFileExtensions: [String]
-  linkImagesToOriginal: Boolean
-  loading: String
-  markdownCaptions: Boolean
   maxWidth: Int
-  pathPrefix: String
-  showCaptions: Boolean
-  tracedSVG: Boolean
-  withWebp: Boolean
   wrapperStyle: String
+}
+
+type SitePluginPluginOptionsSidebar {
+  hidden: Boolean
+  position: String
 }
 
 type SiteSiteMetadata {
@@ -1077,6 +1066,7 @@ enum FileFieldsEnum {
   childMarkdownRemark___excerptAst @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___fields___slug @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___fileAbsolutePath @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  childMarkdownRemark___fileRelativePath @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___frontmatter___date
   childMarkdownRemark___frontmatter___description
   childMarkdownRemark___frontmatter___title
@@ -1109,6 +1099,7 @@ enum FileFieldsEnum {
   childMarkdownRemark___parent___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___parent___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___parent___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  childMarkdownRemark___rawFrontmatter @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___rawMarkdownBody @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___tableOfContents @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___timeToRead @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1456,6 +1447,7 @@ enum MarkdownRemarkFieldsEnum {
   excerptAst @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   fields___slug @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   fileAbsolutePath @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  fileRelativePath @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   frontmatter___date
   frontmatter___description
   frontmatter___title
@@ -1512,6 +1504,7 @@ enum MarkdownRemarkFieldsEnum {
   parent___parent___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   parent___parent___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   parent___parent___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  rawFrontmatter @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   rawMarkdownBody @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   tableOfContents @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   timeToRead @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1876,34 +1869,28 @@ enum SitePageFieldsEnum {
   pluginCreator___parent___parent___children
   pluginCreator___parent___parent___id
   pluginCreator___pluginFilepath
-  pluginCreator___pluginOptions___backgroundColor
   pluginCreator___pluginOptions___background_color
-  pluginCreator___pluginOptions___disableBgImage
-  pluginCreator___pluginOptions___disableBgImageOnAlpha
   pluginCreator___pluginOptions___display
+  pluginCreator___pluginOptions___fs_org
   pluginCreator___pluginOptions___icon
-  pluginCreator___pluginOptions___ignoreFileExtensions
-  pluginCreator___pluginOptions___linkImagesToOriginal
-  pluginCreator___pluginOptions___loading
-  pluginCreator___pluginOptions___markdownCaptions
   pluginCreator___pluginOptions___maxWidth
   pluginCreator___pluginOptions___name
   pluginCreator___pluginOptions___path
   pluginCreator___pluginOptions___pathCheck
-  pluginCreator___pluginOptions___pathPrefix
   pluginCreator___pluginOptions___plugins
   pluginCreator___pluginOptions___plugins___browserAPIs
   pluginCreator___pluginOptions___plugins___id
   pluginCreator___pluginOptions___plugins___name
+  pluginCreator___pluginOptions___plugins___nodeAPIs
   pluginCreator___pluginOptions___plugins___pluginFilepath
   pluginCreator___pluginOptions___plugins___resolve
   pluginCreator___pluginOptions___plugins___version
   pluginCreator___pluginOptions___short_name
-  pluginCreator___pluginOptions___showCaptions
+  pluginCreator___pluginOptions___sidebar___hidden
+  pluginCreator___pluginOptions___sidebar___position
   pluginCreator___pluginOptions___start_url
   pluginCreator___pluginOptions___theme_color
-  pluginCreator___pluginOptions___tracedSVG
-  pluginCreator___pluginOptions___withWebp
+  pluginCreator___pluginOptions___trackingId
   pluginCreator___pluginOptions___wrapperStyle
   pluginCreator___resolve
   pluginCreator___ssrAPIs
@@ -2016,47 +2003,30 @@ enum SitePluginFieldsEnum {
   parent___parent___parent___children
   parent___parent___parent___id
   pluginFilepath
-  pluginOptions___backgroundColor
   pluginOptions___background_color
-  pluginOptions___disableBgImage
-  pluginOptions___disableBgImageOnAlpha
   pluginOptions___display
+  pluginOptions___fs_org
   pluginOptions___icon
-  pluginOptions___ignoreFileExtensions
-  pluginOptions___linkImagesToOriginal
-  pluginOptions___loading
-  pluginOptions___markdownCaptions
   pluginOptions___maxWidth
   pluginOptions___name
   pluginOptions___path
   pluginOptions___pathCheck
-  pluginOptions___pathPrefix
   pluginOptions___plugins
   pluginOptions___plugins___browserAPIs
   pluginOptions___plugins___id
   pluginOptions___plugins___name
+  pluginOptions___plugins___nodeAPIs
   pluginOptions___plugins___pluginFilepath
-  pluginOptions___plugins___pluginOptions___backgroundColor
-  pluginOptions___plugins___pluginOptions___disableBgImage
-  pluginOptions___plugins___pluginOptions___disableBgImageOnAlpha
-  pluginOptions___plugins___pluginOptions___ignoreFileExtensions
-  pluginOptions___plugins___pluginOptions___linkImagesToOriginal
-  pluginOptions___plugins___pluginOptions___loading
-  pluginOptions___plugins___pluginOptions___markdownCaptions
   pluginOptions___plugins___pluginOptions___maxWidth
-  pluginOptions___plugins___pluginOptions___pathPrefix
-  pluginOptions___plugins___pluginOptions___showCaptions
-  pluginOptions___plugins___pluginOptions___tracedSVG
-  pluginOptions___plugins___pluginOptions___withWebp
   pluginOptions___plugins___pluginOptions___wrapperStyle
   pluginOptions___plugins___resolve
   pluginOptions___plugins___version
   pluginOptions___short_name
-  pluginOptions___showCaptions
+  pluginOptions___sidebar___hidden
+  pluginOptions___sidebar___position
   pluginOptions___start_url
   pluginOptions___theme_color
-  pluginOptions___tracedSVG
-  pluginOptions___withWebp
+  pluginOptions___trackingId
   pluginOptions___wrapperStyle
   resolve
   ssrAPIs
@@ -2336,6 +2306,7 @@ input MarkdownRemarkFilterInput {
   excerptAst: JSONQueryOperatorInput
   fields: MarkdownRemarkFieldsFilterInput
   fileAbsolutePath: StringQueryOperatorInput
+  fileRelativePath: StringQueryOperatorInput
   frontmatter: MarkdownRemarkFrontmatterFilterInput
   headings: MarkdownHeadingFilterListInput
   html: StringQueryOperatorInput
@@ -2343,6 +2314,7 @@ input MarkdownRemarkFilterInput {
   id: StringQueryOperatorInput
   internal: InternalFilterInput
   parent: NodeFilterInput
+  rawFrontmatter: StringQueryOperatorInput
   rawMarkdownBody: StringQueryOperatorInput
   tableOfContents: StringQueryOperatorInput
   timeToRead: IntQueryOperatorInput
@@ -2525,28 +2497,20 @@ input SitePluginPackageJsonPeerDependenciesFilterListInput {
 }
 
 input SitePluginPluginOptionsFilterInput {
-  backgroundColor: StringQueryOperatorInput
   background_color: StringQueryOperatorInput
-  disableBgImage: BooleanQueryOperatorInput
-  disableBgImageOnAlpha: BooleanQueryOperatorInput
   display: StringQueryOperatorInput
+  fs_org: StringQueryOperatorInput
   icon: StringQueryOperatorInput
-  ignoreFileExtensions: StringQueryOperatorInput
-  linkImagesToOriginal: BooleanQueryOperatorInput
-  loading: StringQueryOperatorInput
-  markdownCaptions: BooleanQueryOperatorInput
   maxWidth: IntQueryOperatorInput
   name: StringQueryOperatorInput
   path: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
-  pathPrefix: StringQueryOperatorInput
   plugins: SitePluginPluginOptionsPluginsFilterListInput
   short_name: StringQueryOperatorInput
-  showCaptions: BooleanQueryOperatorInput
+  sidebar: SitePluginPluginOptionsSidebarFilterInput
   start_url: StringQueryOperatorInput
   theme_color: StringQueryOperatorInput
-  tracedSVG: BooleanQueryOperatorInput
-  withWebp: BooleanQueryOperatorInput
+  trackingId: StringQueryOperatorInput
   wrapperStyle: StringQueryOperatorInput
 }
 
@@ -2554,6 +2518,7 @@ input SitePluginPluginOptionsPluginsFilterInput {
   browserAPIs: StringQueryOperatorInput
   id: StringQueryOperatorInput
   name: StringQueryOperatorInput
+  nodeAPIs: StringQueryOperatorInput
   pluginFilepath: StringQueryOperatorInput
   pluginOptions: SitePluginPluginOptionsPluginsPluginOptionsFilterInput
   resolve: StringQueryOperatorInput
@@ -2565,19 +2530,13 @@ input SitePluginPluginOptionsPluginsFilterListInput {
 }
 
 input SitePluginPluginOptionsPluginsPluginOptionsFilterInput {
-  backgroundColor: StringQueryOperatorInput
-  disableBgImage: BooleanQueryOperatorInput
-  disableBgImageOnAlpha: BooleanQueryOperatorInput
-  ignoreFileExtensions: StringQueryOperatorInput
-  linkImagesToOriginal: BooleanQueryOperatorInput
-  loading: StringQueryOperatorInput
-  markdownCaptions: BooleanQueryOperatorInput
   maxWidth: IntQueryOperatorInput
-  pathPrefix: StringQueryOperatorInput
-  showCaptions: BooleanQueryOperatorInput
-  tracedSVG: BooleanQueryOperatorInput
-  withWebp: BooleanQueryOperatorInput
   wrapperStyle: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsSidebarFilterInput {
+  hidden: BooleanQueryOperatorInput
+  position: StringQueryOperatorInput
 }
 
 input SitePluginSortInput {

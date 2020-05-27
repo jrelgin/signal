@@ -101,6 +101,16 @@ module.exports = {
         fs_org: 'J70Y5',
       },
     },
+    {
+      resolve: 'gatsby-plugin-tinacms',
+      options: {
+        sidebar: {
+          hidden: process.env.NODE_ENV === 'production',
+          position: 'displace',
+        },
+        plugins: ['gatsby-tinacms-git', 'gatsby-tinacms-remark'],
+      },
+    },
     `gatsby-plugin-react-helmet`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

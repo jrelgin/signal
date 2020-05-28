@@ -31,6 +31,14 @@
   }
 }
 
+.period {
+  display: inline-block;
+  font-size: 36px;
+  line-height: 1.8rem;
+  margin-left: -6px;
+  color: $orange;
+}
+
 .site-nav {
   background: $signal-black;
   display: grid;

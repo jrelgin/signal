@@ -101,6 +101,15 @@ module.exports = {
         fs_org: 'J70Y5',
       },
     },
+    {
+      resolve: 'gatsby-plugin-tinacms',
+      options: {
+        // The CMS will be disabled on your production site
+        enabled: process.env.NODE_ENV !== 'production',
+        sidebar: true,
+        plugins: ['gatsby-tinacms-git', 'gatsby-tinacms-remark'],
+      },
+    },
     `gatsby-plugin-react-helmet`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { loadableP5 as P5Wrapper } from '../scripts/loadable';
 import Sketch from '../scripts/sketch';
 import { graphql } from 'gatsby';

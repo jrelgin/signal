@@ -16,3 +16,5 @@ fields:
     schema:
       format: markdown
   label: Article Description
+pages:
+- src/content/posts/this-is-a-test-article.md

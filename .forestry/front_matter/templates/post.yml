@@ -1,4 +1,18 @@
 ---
 label: Post
 hide_body: false
-fields: []
+fields:
+- name: article_title
+  type: text
+  config:
+    required: false
+  label: Article title
+- name: article_description
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: false
+    schema:
+      format: markdown
+  label: Article Description

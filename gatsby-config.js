@@ -98,7 +98,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-fullstory`,
       options: {
-        fs_org: '17Y4T4',
+        fs_org: 'J70Y5',
       },
     },
     {

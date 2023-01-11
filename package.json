@@ -33,7 +33,7 @@
     "gatsby-source-filesystem": "^2.3.1",
     "gatsby-tinacms-git": "^0.4.11",
     "gatsby-tinacms-remark": "^0.7.18",
-    "gatsby-transformer-remark": "^2.8.7",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^2.5.2",
     "p5": "^1.0.0",
     "prismjs": "^1.20.0",
